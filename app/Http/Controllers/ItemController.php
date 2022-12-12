@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Item;
+use Illuminate\Support\Facades\DB;
 
 class ItemController extends Controller
 {
@@ -89,5 +90,21 @@ class ItemController extends Controller
         $item->delete();
 
         return redirect()->route('items.index');
+    }
+
+    public function showProduct(){
+        $products = Item::all();
+        $data = [
+            'products' => $products
+        ];
+        return view('items.show', $data);
+    }
+
+    public function showDetail(string $item_id){
+        $product = DB::table('items')->where('item_id', '=', $item_id)->get()->first();
+        $data = [
+            'product' => $product
+        ];
+        return view('items.detail', $data);
     }
 }
