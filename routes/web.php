@@ -3,8 +3,6 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ItemController;
 
-Route::get('/', function () {
-    return view('welcome');
-});
-
+Route::get('/showProduct', [ItemController::class, 'showProduct']);
+Route::get('/showProduct/{item_id?}', [ItemController::class, 'showDetail']);
 Route::resource('items', ItemController::class);
