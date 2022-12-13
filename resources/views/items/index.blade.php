@@ -1,6 +1,6 @@
 @extends('layout')
 
-@section('title', 'View Item')
+@section('title', 'Manage Items')
 
 @section('content')
 <div class="container mt-5 py-5">
