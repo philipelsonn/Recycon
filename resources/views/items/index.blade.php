@@ -1,4 +1,4 @@
-@extends('layout')
+@extends('layout.layout')
 
 @section('title', 'Manage Items')
 
@@ -6,7 +6,7 @@
 <div class="container mt-5 py-5">
     <div class=" card card-shadow border-0 rounded-20 ">
         <div class="card-body my-3">
-            <div class="title-line"></div> 
+            <div class="title-line"></div>
             <h5 class="subheading-text mt-3">Items</h5>
             <h3 class="fw-bold my-3 c-text-1">Item List</h3>
             <hr>
@@ -55,6 +55,6 @@
                 </div>
             @endif
         </div>
-    </div>  
-</div> 
+    </div>
+</div>
 @endsection
