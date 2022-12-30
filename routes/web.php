@@ -3,6 +3,7 @@
 use App\Http\Controllers\HomeController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ItemController;
+use Illuminate\Support\Facades\Auth;
 
 Route::get('/home', [HomeController::class, 'guestHome']);
 Route::get('/home/admin', [HomeController::class, 'adminHome']);
