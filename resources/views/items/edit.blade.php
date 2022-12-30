@@ -4,7 +4,7 @@
 
 @section('content')
     <div class="container">
-        <h3 class="text-primary fw-bold mt-5">Update Item</h3>
+        <h3 class="text-primary fw-bold mt-3">Update Item</h3>
         <form method="POST" action="{{ route('items.update', $item->id)}}"
             enctype="multipart/form-data">
             @csrf
@@ -38,33 +38,37 @@
                         </div>
                     </div>
                 </div>
-                <div class="form-group mt-4">
+                <div class="form-group mt-3">
                     <label for="name" class="col-md-3 col-form-label text-sm-left fw-bold">
                         {{_('Item Name')}}</label>
                     <div class="col-md-12">
                         <input type="text" id="name" name="name" class="form-control" required value="{{$item->name}}">
                     </div>
                 </div>
-                <div class="form-group mt-4">
+                <div class="form-group mt-3">
                     <label for="description" class="col-md-3 col-form-label text-sm-left fw-bold">
                         {{_('Item Description')}}</label>
                     <div class="col-md-12">
                         <textarea rows="3" type="text" id="description" name="description" class="form-control" required>{{$item->description}}</textarea>
                     </div>
                 </div>
-                <div class="form-group row mt-4">
+                <div class="form-group row mt-3">
                     <label for="image" class="col-md-3 col-form-label text-sm-left fw-bold">
                         {{_('Item Image')}}</label>
+                    <img src="/storage/images/item/{{ $item->image }}" alt="" style="height: 70px; width: 100px">
                     <div class="col-md-9">
                         <input class="form-control rounded-pill" type="text" id="image_old"
                             name="image_old" value="{{ $item->image }}" hidden>
-                        <div class="input-group ms-4">
-                            <input type="file" name="image_new" class="form-control rounded-20 image-file-input" id="image_new" accept="image/png, image/jpeg, image/jpg">
-                            <a href="/storage/images/item/{{ $item->image }}" target="_blank" class="btn btn-info reset-file-input text-white bg-primary">Current Image</a>
-                        </div>
                     </div>
                 </div>
-                <div class="form-group row mt-5">
+                <div class="form-group mt-3">
+                    <label for="image" class="col-md-3 col-form-label text-sm-left fw-bold">
+                        {{_('New Image')}}</label>
+                    <div class="input-group">
+                        <input type="file" name="image_new" class="form-control rounded-20 image-file-input" id="image_new" accept="image/png, image/jpeg, image/jpg">
+                    </div>
+                </div>
+                <div class="form-group row mt-5 mb-4">
                     <div class="d-flex justify-content-end ms-4">
                         @method('PUT')
                         <button type="submit" class="btn btn-outline-1 rounded-20 bg-warning fw-bold">Update</button>
