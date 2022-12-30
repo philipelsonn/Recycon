@@ -6,7 +6,7 @@ use App\Http\Controllers\ItemController;
 use Illuminate\Support\Facades\Auth;
 
 Auth::routes();
-
+Route::get('/', [HomeController::class, 'index']);
 Route::get('/home', [HomeController::class, 'index']);
 
 Route::get('/showProduct', [ItemController::class, 'showProduct']);
