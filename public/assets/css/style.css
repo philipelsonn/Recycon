@@ -1,3 +1,7 @@
 .border-dotted{
     border-style: dotted;
 }
+
+body{
+    overflow-x: hidden;
+}
