@@ -40,9 +40,13 @@
                                             <div class="btn-group me-2">
                                                 <a class="btn btn-sm btn-block btn-warning text-dark" href="{{ route('items.edit', $item->id) }}">UPDATE   </a>
                                             </div>
-                                            <div class="btn-group me-2">
-                                                <a class="btn btn-sm btn-block btn-danger text-white" href="{{ route('items.edit', $item->id) }}">DELETE   </a>
-                                            </div>
+                                            <form method="POST" action="{{ route('items.destroy', $item->id) }}">
+                                                @csrf
+                                                <input type="hidden" name="_method" value='DELETE'>
+                                                <button type="submit" class="btn btn-sm btn-block btn-danger text-white"
+                                                onclick="return confirm('Are you sure you want to permanently delete the data?')">
+                                                DELETE</button>
+                                            </form>
                                         </div>
                                     </td>
                                 </tr>
