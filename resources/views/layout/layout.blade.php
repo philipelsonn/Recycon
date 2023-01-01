@@ -23,7 +23,7 @@
                     @if (auth()->user())
                         @if (auth()->user()->type == 'USER')
                         <li class="nav-item dropdown">
-                            <a class="nav-link text-light" href="/showProduct">My Cart</a>
+                            <a class="nav-link text-light" href="{{route('cart') }}">My Cart</a>
                         </li>
                         <li class="nav-item dropdown">
                             <a class="nav-link text-light" href="/showProduct">Transaction History</a>
