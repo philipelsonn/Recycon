@@ -4,7 +4,7 @@ use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ItemController;
-use App\Http\Controllers\TransactionController;
+use App\Http\Controllers\CartController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 
@@ -24,8 +24,8 @@ Route::get('/showProduct/{item_id?}', [ItemController::class, 'showDetail']);
 Route::resource('items', ItemController::class);
 
 //cart
-Route::get('/cart', [TransactionController::class, 'viewCart'])->name('cart');
-Route::post('/addToCart/{id}', [TransactionController::class, 'addToCart'])->name('addToCart');
-Route::get('/editCart/{id}', [TransactionController::class, 'editCart'])->name('editCart');
-Route::put('/updateCart/{id}', [TransactionController::class, 'updateCart'])->name('updateCart');
-Route::delete('/deleteCart/{id}', [TransactionController::class, 'deleteCart'])->name('deleteCart');
+Route::get('/cart', [CartController::class, 'index'])->name('cart');
+Route::post('/addToCart/{id}', [CartController::class, 'store'])->name('addToCart');
+Route::get('/editCart/{id}', [CartController::class, 'edit'])->name('editCart');
+Route::put('/updateCart/{id}', [CartController::class, 'update'])->name('updateCart');
+Route::delete('/deleteCart/{id}', [CartController::class, 'destroy'])->name('deleteCart');

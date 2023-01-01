@@ -7,9 +7,9 @@ use App\Models\Item;
 use App\Models\Transaction;
 use Illuminate\Support\Facades\DB;
 
-class TransactionController extends Controller
+class CartController extends Controller
 {
-    public function viewCart()
+    public function index()
     {
         $status = "CART";
         $user_id = auth()->user()->id;
@@ -18,7 +18,7 @@ class TransactionController extends Controller
         ]);
     }
 
-    public function addToCart(Request $request, $id)
+    public function store(Request $request, $id)
     {
         $request->validate([
             'quantity' => 'required|integer|gt:0',
@@ -33,17 +33,17 @@ class TransactionController extends Controller
             'status' => "CART"
         ]);
 
-        return redirect()->route('home');
+        return redirect()->route('cart');
     }
 
-    public function editCart($id)
+    public function edit($id)
     {
         return view('carts.edit', [
             'transaction' => Transaction::where('id', $id)->get()->first()
         ]);
     }
 
-    public function updateCart(Request $request, $id)
+    public function update(Request $request, $id)
     {
         $request->validate([
             'quantity' => 'required|integer|gt:0',
@@ -58,7 +58,7 @@ class TransactionController extends Controller
         return redirect()->route('cart');
     }
 
-    public function deleteCart($id)
+    public function destroy($id)
     {
         $transaction = Transaction::where('id', $id)->get()->first();
 
