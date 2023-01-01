@@ -21,6 +21,18 @@
                     <p class="card-text fw-bold">Description:</p>
                     <p class="card-text">{{ $product->description }}</p>
                     <hr>
+                    @if (auth()->user())
+                        @if (auth()->user()->type == 'USER')
+                        <form method="POST" action="{{ route('addToCart', $product->item_id) }}" enctype="multipart/form-data">
+                        @csrf
+                        <label for="quantity">Qty:</label>
+                        <input type="number" id="quantity" name="quantity" min="1">
+                        <button class="btn btn-warning btn-outline-light" type="submit">Add To Cart</button>
+                        </form>
+                        @endif
+                    @else
+                    <a class="btn btn-warning btn-outline-light" type="submit" href="{{ route('login') }}">login to buy</a>
+                    @endif
                 </div>
             </div>
         </div>

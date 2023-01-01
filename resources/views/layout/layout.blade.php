@@ -22,24 +22,22 @@
                     </li>
                     @auth
                         @if (auth()->user()->type == 'USER')
-                            <li class="nav-item">
-                                <a class="nav-link text-light" href="">My Cart</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link text-light" href="">Transaction History</a>
-                            </li>
-                        @else
-                            <li class="nav-item">
-                                <div class="nav-item dropdown me-3">
-                                    <a class="nav-link dropdown-toggle text-light" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                    Manage Item
-                                    </a>
-                                    <ul class="dropdown-menu">
-                                        <li><a class="dropdown-item text-dark" href="#">View Item</a></li>
-                                        <li><a class="dropdown-item text-dark" href="#">Add Item</a></li>
-                                    </ul>
-                                </div>
-                            </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link text-light" href="{{route('cart') }}">My Cart</a>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link text-light" href="/showProduct">Transaction History</a>
+                        </li>
+                        @elseif (auth()->user()->type == 'ADMIN')
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle text-light" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            Manage Item
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li><a class="dropdown-item text-dark" href="#">View Item</a></li>
+                                <li><a class="dropdown-item text-dark" href="#">Add Item</a></li>
+                            </ul>
+                        </li>
                         @endif
                     @endauth
                 </ul>

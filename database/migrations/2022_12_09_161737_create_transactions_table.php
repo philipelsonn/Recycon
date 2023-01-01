@@ -12,6 +12,7 @@ class CreateTransactionsTable extends Migration
             $table->id();
             $table->unsignedBigInteger('user_id')->references('id')->on('users')->onUpdate('cascade')->onDelete('cascade');
             $table->string('item_id')->references('item_id')->on('items')->onUpdate('cascade')->onDelete('cascade');
+            $table->integer('quantity');
             $table->string('status');
             $table->string('receiver_name')->nullable();
             $table->string('receiver_address')->nullable();
