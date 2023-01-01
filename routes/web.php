@@ -17,11 +17,18 @@ Route::get('/register', [AuthController::class, 'register'])->middleware('guest'
 Route::post('/register', [AuthController::class, 'registerAuth']);
 Route::get('/editProfile', [AuthController::class, 'editProfile'])->middleware('auth');
 Route::post('/editProfile', [AuthController::class, 'editProfileAuth']);
+Route::get('/changePassword', [AuthController::class, 'changePassword'])->middleware('auth');
+Route::post('/changePassword', [AuthController::class, 'changePasswordAuth']);
 
 //item
 Route::get('/showProduct', [ItemController::class, 'showProduct']);
 Route::get('/showProduct/{item_id?}', [ItemController::class, 'showDetail']);
-Route::resource('items', ItemController::class);
+Route::get('/addItem', [ItemController::class, 'create'])->name('items.create')->middleware('admin');
+Route::post('/addItem', [ItemController::class, 'store']);
+Route::get('/viewItem', [ItemController::class, 'index'])->name('items.index')->middleware('admin');
+Route::get('/updateItem/{item_id?}', [ItemController::class, 'edit'])->name('items.edit')->middleware('admin');
+Route::post('/updateItem/{item_id?}', [ItemController::class, 'update']);
+Route::post('/deleteItem/{item_id?}', [ItemController::class, 'destroy']);
 
 //cart
 Route::get('/cart', [CartController::class, 'index'])->name('cart');

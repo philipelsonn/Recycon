@@ -26,16 +26,16 @@
                             <a class="nav-link text-light" href="{{route('cart') }}">My Cart</a>
                         </li>
                         <li class="nav-item dropdown">
-                            <a class="nav-link text-light" href="/showProduct">Transaction History</a>
+                            <a class="nav-link text-light" href="">Transaction History</a>
                         </li>
                         @elseif (auth()->user()->type == 'ADMIN')
                         <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle text-light" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            <a class="nav-link dropdown-toggle text-light" href="" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                             Manage Item
                             </a>
                             <ul class="dropdown-menu">
-                                <li><a class="dropdown-item text-dark" href="#">View Item</a></li>
-                                <li><a class="dropdown-item text-dark" href="#">Add Item</a></li>
+                                <li><a class="dropdown-item text-dark" href="/viewItem">View Item</a></li>
+                                <li><a class="dropdown-item text-dark" href="/addItem">Add Item</a></li>
                             </ul>
                         </li>
                         @endif
@@ -54,7 +54,7 @@
                             <li class="d-flex justify-content-center">{{ auth()->user()->username }}</li>
                             <hr>
                             <li><a class="dropdown-item text-dark" href="/editProfile">Edit Profile</a></li>
-                            <li><a class="dropdown-item text-dark" href="#">Change Password</a></li>
+                            <li><a class="dropdown-item text-dark" href="/changePassword">Change Password</a></li>
                         </ul>
                     </div>
                     <form action="/logout" method="post">

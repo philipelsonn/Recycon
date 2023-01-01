@@ -50,11 +50,13 @@ class ItemController extends Controller
         return redirect()->route('items.index');
     }
 
-    public function edit(Item $item)
+    public function edit(Item $item, string $item_id)
     {
-        return view('items.edit', [
-            'item' => $item,
-        ]);
+        $item = DB::table('items')->where('item_id', '=', $item_id)->first();
+        $data = [
+            'item' => $item
+        ];
+        return view('items.edit', $data);
     }
 
     public function update(Request $request, Item $item)
@@ -86,9 +88,9 @@ class ItemController extends Controller
         return redirect()->route('items.index');
     }
 
-    public function destroy(Item $item)
+    public function destroy(string $item_id)
     {
-        $item->delete();
+        $item = Item::where('item_id', '=', $item_id)->delete();
 
         return redirect()->route('items.index');
     }
