@@ -47,13 +47,13 @@
                         <button class="btn btn-outline-light" type="submit">Search</button>
                     </form>
                     <div class="nav-item dropdown ms-3 me-3">
-                        <a class="nav-link dropdown-toggle text-light" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        <a class="nav-link dropdown-toggle text-light" href="" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                         Profile
                         </a>
                         <ul class="dropdown-menu">
                             <li class="d-flex justify-content-center">{{ auth()->user()->username }}</li>
                             <hr>
-                            <li><a class="dropdown-item text-dark" href="#">Edit Profile</a></li>
+                            <li><a class="dropdown-item text-dark" href="/editProfile">Edit Profile</a></li>
                             <li><a class="dropdown-item text-dark" href="#">Change Password</a></li>
                         </ul>
                     </div>

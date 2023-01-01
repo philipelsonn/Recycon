@@ -16,7 +16,7 @@ class AuthController extends Controller
 
     public function loginAuth(Request $request){
         $credentials = $request->validate([
-            'email' => 'required|email:dns',
+            'email' => 'required|email:rfc,dns',
             'password' => 'required'
         ]);
 
@@ -55,7 +55,26 @@ class AuthController extends Controller
 
         User::create($validatedData);
 
-        return redirect('/login')->with('success', 'Registration Success! Pleas Login!');
+        return redirect('/login')->with('success', 'Registration Success! Please Login!');
+    }
+
+    public function editProfile(){
+        return view('profile.edit');
+    }
+
+    public function editProfileAuth(Request $request){
+        $request->validate([
+            'username' => 'required|min:3',
+            'email' => 'required|email:rfc,dns'
+        ]);
+
+        $user = User::where('id', Auth::user()->id)->first();
+        $user->update([
+            'username' => $request->username,
+            'email' => $request->email
+        ]);
+
+        return redirect('/home')->with('updated', 'Profile Update Success!');
     }
 
 }
