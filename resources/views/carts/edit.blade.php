@@ -27,7 +27,7 @@
                     <label for="quantity">Qty:</label>
                     <input type="number" id="quantity" name="quantity" min="1">
                     @method('PUT')
-                    <button class="btn btn-warning btn-outline-light" type="submit">Add To Cart</button>
+                    <button class="btn btn-warning btn-outline-light" type="submit">Update Cart</button>
                     </form>
                 </div>
             </div>
