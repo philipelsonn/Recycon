@@ -38,12 +38,12 @@
                                 <td class="align-middle">
                                     <div class="btn-toolbar flex-nowrap justify-content-evenly">
                                         <div class="btn-group me-2">
-                                            <a class="btn btn-sm btn-block btn-warning text-dark" href="{{ route('editCart', $transaction->id) }}">UPDATE</a>
+                                            <a class="btn btn-sm btn-block btn-warning text-dark fw-bold" href="{{ route('editCart', $transaction->id) }}">UPDATE</a>
                                         </div>
                                         <form method="POST" action="{{ route('deleteCart', $transaction->id) }}">
                                             @csrf
                                             <input type="hidden" name="_method" value='DELETE'>
-                                            <button type="submit" class="btn btn-sm btn-block btn-danger text-white"
+                                            <button type="submit" class="btn btn-sm btn-block btn-danger text-white fw-bold"
                                             onclick="return confirm('Are you sure you want to permanently delete the data?')">
                                             DELETE</button>
                                         </form>

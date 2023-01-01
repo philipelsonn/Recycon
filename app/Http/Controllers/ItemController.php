@@ -11,6 +11,9 @@ class ItemController extends Controller
 {
     public function index()
     {
+        if (auth()->user()->type == 'USER'){
+            return redirect('/');
+        }
         return view('items.index', [
             'items' => Item::all()
         ]);
@@ -18,6 +21,9 @@ class ItemController extends Controller
 
     public function create()
     {
+        if (auth()->user()->type == 'USER'){
+            return redirect('/');
+        }
         return view('items.create');
     }
 
@@ -56,6 +62,9 @@ class ItemController extends Controller
         $data = [
             'item' => $item
         ];
+        if (auth()->user()->type == 'USER'){
+            return redirect('/');
+        }
         return view('items.edit', $data);
     }
 
