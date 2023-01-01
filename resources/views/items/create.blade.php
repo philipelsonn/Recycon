@@ -5,7 +5,7 @@
 @section('content')
     <div class="container">
         <h3 class="text-primary fw-bold mt-5">Add New Item</h3>
-        <form method="POST" action="{{route('items.store')}}" enctype="multipart/form-data">
+        <form method="POST" action="/addItem" enctype="multipart/form-data">
             @csrf
             <div class="row">
                 <div class="d-flex jusitfy-content-between">

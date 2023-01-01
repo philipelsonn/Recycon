@@ -77,4 +77,27 @@ class AuthController extends Controller
         return redirect('/home')->with('updated', 'Profile Update Success!');
     }
 
+    public function changePassword(){
+        return view('profile.password');
+    }
+
+    public function changePasswordAuth(Request $request){
+        $request->validate([
+            'password' => 'min:6|required',
+            'newPassword' => 'min:6|required_with:confirmNewPassword|same:confirmNewPassword',
+            'confirmNewPassword' => 'min:6|required'
+        ]);
+
+        $user = User::where('id', Auth::user()->id)->first();
+        if(!Hash::check($request->password, $user->password)){
+            return back()->with("error", "Old Password Doesn't match!");
+        }
+
+        $user->update([
+            'password' => Hash::make($request->newPassword)
+        ]);
+
+        return redirect('/home')->with('changed', 'Your Password Has Been Changed!');
+    }
+
 }
