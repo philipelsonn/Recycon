@@ -23,10 +23,10 @@ Route::post('/changePassword', [AuthController::class, 'changePasswordAuth']);
 //item
 Route::get('/showProduct', [ItemController::class, 'showProduct']);
 Route::get('/showProduct/{item_id?}', [ItemController::class, 'showDetail']);
-Route::get('/addItem', [ItemController::class, 'create'])->name('items.create')->middleware('admin');
+Route::get('/addItem', [ItemController::class, 'create'])->name('items.create');
 Route::post('/addItem', [ItemController::class, 'store']);
-Route::get('/viewItem', [ItemController::class, 'index'])->name('items.index')->middleware('admin');
-Route::get('/updateItem/{item_id?}', [ItemController::class, 'edit'])->name('items.edit')->middleware('admin');
+Route::get('/viewItem', [ItemController::class, 'index'])->name('items.index');
+Route::get('/updateItem/{item_id?}', [ItemController::class, 'edit'])->name('items.edit');
 Route::post('/updateItem/{item_id?}', [ItemController::class, 'update']);
 Route::post('/deleteItem/{item_id?}', [ItemController::class, 'destroy']);
 

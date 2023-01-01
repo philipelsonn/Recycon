@@ -3,10 +3,10 @@
 @section('title', 'Edit Cart')
 
 @section('content')
-    <div class="card m-5 d-flex align-items-stretch">
+    <div class="card d-flex align-items-stretch mx-auto my-auto w-75 bg-light">
         <div class="row g-0">
-            <div class="col-md-4">
-                <img src="/storage/images/item/{{ $transaction->item->image }}" class="img-fluid rounded-start" alt="...">
+            <div class="col-md-4 my-auto">
+                <img src="/storage/images/item/{{ $transaction->item->image }}" class="card-img-top embed-responsive-item" alt="...">
             </div>
             <div class="col-md-8 d-flex justify-content-center">
                 <div class="card-body">
@@ -24,10 +24,10 @@
                     <form method="POST" action="{{ route('updateCart', $transaction->id) }}" enctype="multipart/form-data">
                     @csrf
                     @method('UPDATE')
-                    <label for="quantity">Qty:</label>
-                    <input type="number" id="quantity" name="quantity" min="1">
+                    <label for="quantity" class="fw-bold">Qty:</label>
+                    <input type="number" id="quantity" name="quantity" min="1" value="1" style="width:4rem">
                     @method('PUT')
-                    <button class="btn btn-warning btn-outline-light" type="submit">Update Cart</button>
+                    <button class="btn btn-warning fw-bold ms-4" type="submit">Update Cart</button>
                     </form>
                 </div>
             </div>
