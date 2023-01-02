@@ -105,7 +105,7 @@ class ItemController extends Controller
     }
 
     public function showProduct(){
-        $products = Item::all();
+        $products = DB::table('items')->paginate(3);
         $data = [
             'products' => $products
         ];
@@ -119,4 +119,5 @@ class ItemController extends Controller
         ];
         return view('items.detail', $data);
     }
+
 }
