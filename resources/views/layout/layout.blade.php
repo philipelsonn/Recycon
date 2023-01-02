@@ -42,8 +42,8 @@
                     @endauth
                 </ul>
                 @auth
-                    <form class="d-flex w-50" role="search">
-                        <input class="form-control me-2" type="search" placeholder="Search product..." aria-label="Search">
+                    <form class="d-flex w-50" role="search" action="/searchItem" method="GET">
+                        <input class="form-control me-2" type="search" placeholder="Search product..." aria-label="Search" value="{{ old('keyword') }}" id="keyword" name="keyword">
                         <button class="btn btn-outline-light" type="submit">Search</button>
                     </form>
                     <div class="nav-item dropdown ms-3 me-3">

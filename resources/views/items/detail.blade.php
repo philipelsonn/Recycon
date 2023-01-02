@@ -6,9 +6,9 @@
     <div class="card d-flex align-items-stretch mx-auto my-auto w-75 bg-light">
         <div class="row g-0">
             <div class="col-md-4 my-auto">
-                <img src="/storage/images/item/{{ $product->image }}" class="card-img-top embed-responsive-item" alt="...">
+                <img src="/storage/images/item/{{ $product->image }}" class="card-img-top embed-responsive-item" alt="..." style="max-height: 25rem">
             </div>
-            <div class="col-md-8 d-flex justify-content-center">
+            <div class="col-md-8 d-flex justify-content-center my-auto">
                 <div class="card-body">
                     <h5 class="card-title fw-bold">{{ $product->name }}</h5>
                     <hr>
