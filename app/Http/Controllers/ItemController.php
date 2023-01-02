@@ -105,9 +105,14 @@ class ItemController extends Controller
     }
 
     public function showProduct(){
-        $products = DB::table('items')->paginate(3);
+        $products = Item::orderBy('created_at', 'asc');
+
+        if (request('keyword')){
+            $products->where('name', 'like', '%' . request('keyword') . '%');
+        }
+
         $data = [
-            'products' => $products
+            'products' => $products->paginate(3)->withQueryString()
         ];
         return view('items.show', $data);
     }
