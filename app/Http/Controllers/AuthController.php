@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Cookie;
 use Illuminate\Support\Facades\Hash;
 
 class AuthController extends Controller
@@ -16,9 +17,14 @@ class AuthController extends Controller
 
     public function loginAuth(Request $request){
         $credentials = $request->validate([
-            'email' => 'required|email:dns',
+            'email' => 'required|email:rfc,dns',
             'password' => 'required'
         ]);
+
+        if ($request->has('remember')){
+            Cookie::queue('email', $request->email, 1);
+            Cookie::queue('password', $request->password, 1);
+        }
 
         if (Auth::attempt($credentials)){
             $request->session()->regenerate();
@@ -36,7 +42,7 @@ class AuthController extends Controller
 
         request()->session()->regenerateToken();
 
-        return redirect('/');
+        return redirect('/login');
     }
 
     public function register(){
@@ -55,7 +61,49 @@ class AuthController extends Controller
 
         User::create($validatedData);
 
-        return redirect('/login')->with('success', 'Registration Success! Pleas Login!');
+        return redirect('/login')->with('success', 'Registration Success! Please Login!');
+    }
+
+    public function editProfile(){
+        return view('profile.edit');
+    }
+
+    public function editProfileAuth(Request $request){
+        $request->validate([
+            'username' => 'required|min:3',
+            'email' => 'required|email:rfc,dns'
+        ]);
+
+        $user = User::where('id', Auth::user()->id)->first();
+        $user->update([
+            'username' => $request->username,
+            'email' => $request->email
+        ]);
+
+        return redirect('/home')->with('updated', 'Profile Update Success!');
+    }
+
+    public function changePassword(){
+        return view('profile.password');
+    }
+
+    public function changePasswordAuth(Request $request){
+        $request->validate([
+            'password' => 'min:6|required',
+            'newPassword' => 'min:6|required_with:confirmNewPassword|same:confirmNewPassword',
+            'confirmNewPassword' => 'min:6|required'
+        ]);
+
+        $user = User::where('id', Auth::user()->id)->first();
+        if(!Hash::check($request->password, $user->password)){
+            return back()->with("error", "Old Password Doesn't match!");
+        }
+
+        $user->update([
+            'password' => Hash::make($request->newPassword)
+        ]);
+
+        return redirect('/home')->with('changed', 'Your Password Has Been Changed!');
     }
 
 }

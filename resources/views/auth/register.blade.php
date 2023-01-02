@@ -7,11 +7,12 @@
             <form method="POST" action="/register">
                 @csrf
                 <div class="d-flex justify-content-center mt-3">
-                    <div class="col-md-4">
-                        <input type="text" id="username" name="username" class="form-control p-2 @error('name')
+                    <div class="col-md-4 form-floating">
+                        <input type="text" id="username" name="username" class="form-control @error('name')
                             is-invalid
-                        @enderror" placeholder="Full Name" value="{{ old('name') }}" required>
-                        @error('name')
+                        @enderror" placeholder="Full Name" value="{{ old('username') }}" required>
+                        <label for="username">Full Name</label>
+                        @error('username')
                             <div class="invalid-feedback">
                                 {{ $message }}
                             </div>
@@ -19,10 +20,11 @@
                     </div>
                 </div>
                 <div class="d-flex justify-content-center mt-3">
-                    <div class="col-md-4">
-                        <input type="email" id="email" name="email" class="form-control p-2 @error('email')
+                    <div class="col-md-4 form-floating">
+                        <input type="email" id="email" name="email" class="form-control @error('email')
                             is-invalid
                         @enderror" placeholder="Email" value="{{ old('email') }}" required>
+                        <label for="email">Email</label>
                         @error('email')
                             <div class="invalid-feedback">
                                 {{ $message }}
@@ -31,10 +33,11 @@
                     </div>
                 </div>
                 <div class="d-flex justify-content-center mt-3">
-                    <div class="col-md-4">
-                        <input type="password" id="password" name="password" class="form-control p-2 @error('password')
+                    <div class="col-md-4 form-floating">
+                        <input type="password" id="password" name="password" class="form-control @error('password')
                             is-invalid
                         @enderror" placeholder="Password" required>
+                        <label for="password">Password</label>
                         @error('password')
                             <div class="invalid-feedback">
                                 {{ $message }}
@@ -43,11 +46,12 @@
                     </div>
                 </div>
                 <div class="d-flex justify-content-center mt-3">
-                    <div class="col-md-4">
-                        <input type="password" id="confirmPassword" name="confirmPassword" class="form-control p-2 @error('password')
+                    <div class="col-md-4 form-floating">
+                        <input type="password" id="confirmPassword" name="confirmPassword" class="form-control @error('password')
                         is-invalid
                         @enderror" placeholder="Confirm Password" required>
-                        @error('password')
+                        <label for="confirmPassword">Confirm Password</label>
+                        @error('confirmPassword')
                             <div class="invalid-feedback">
                                 {{ $message }}
                             </div>

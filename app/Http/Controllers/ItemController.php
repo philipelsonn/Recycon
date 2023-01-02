@@ -11,6 +11,9 @@ class ItemController extends Controller
 {
     public function index()
     {
+        if (auth()->user()->type == 'USER'){
+            return redirect('/');
+        }
         return view('items.index', [
             'items' => Item::all()
         ]);
@@ -18,6 +21,9 @@ class ItemController extends Controller
 
     public function create()
     {
+        if (auth()->user()->type == 'USER'){
+            return redirect('/');
+        }
         return view('items.create');
     }
 
@@ -50,11 +56,16 @@ class ItemController extends Controller
         return redirect()->route('items.index');
     }
 
-    public function edit(Item $item)
+    public function edit(Item $item, string $item_id)
     {
-        return view('items.edit', [
-            'item' => $item,
-        ]);
+        $item = DB::table('items')->where('item_id', '=', $item_id)->first();
+        $data = [
+            'item' => $item
+        ];
+        if (auth()->user()->type == 'USER'){
+            return redirect('/');
+        }
+        return view('items.edit', $data);
     }
 
     public function update(Request $request, Item $item)
@@ -86,17 +97,22 @@ class ItemController extends Controller
         return redirect()->route('items.index');
     }
 
-    public function destroy(Item $item)
+    public function destroy(string $item_id)
     {
-        $item->delete();
+        $item = Item::where('item_id', '=', $item_id)->delete();
 
         return redirect()->route('items.index');
     }
 
     public function showProduct(){
-        $products = Item::all();
+        $products = Item::orderBy('created_at', 'asc');
+
+        if (request('keyword')){
+            $products->where('name', 'like', '%' . request('keyword') . '%');
+        }
+
         $data = [
-            'products' => $products
+            'products' => $products->paginate(3)->withQueryString()
         ];
         return view('items.show', $data);
     }
@@ -108,4 +124,5 @@ class ItemController extends Controller
         ];
         return view('items.detail', $data);
     }
+
 }

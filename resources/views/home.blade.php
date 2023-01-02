@@ -1,6 +1,26 @@
 @extends('layout.layout')
 
 @section('content')
+    @if (session()->has('updated'))
+        <div class="d-flex justify-content-center">
+            <div class="col-md-4">
+                <div class="alert alert-success alert-dismissible fade show" role="alert">
+                    {{ session('updated') }}
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+            </div>
+        </div>
+    @endif
+    @if (session()->has('changed'))
+        <div class="d-flex justify-content-center">
+            <div class="col-md-4">
+                <div class="alert alert-success alert-dismissible fade show" role="alert">
+                    {{ session('changed') }}
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+            </div>
+        </div>
+    @endif
     <div class="container-fluid bg-light">
         <div class="container-fluid d-flex justify-content-center mb-5">
             <img src="https://img1.goodfon.com/wallpaper/nbig/c/1a/recycle-cans-recycled-old.jpg" alt="" style="height:600px; width:100%">
