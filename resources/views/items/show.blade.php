@@ -3,7 +3,7 @@
 @section('title', 'View Items')
 
 @section('content')
-    <p class="fs-2 text-dark mb-1 d-flex justify-content-center fw-bold">Our Products</p>
+    <p class="fs-2 text-dark mt-2 mb-1 d-flex justify-content-center fw-bold">Our Products</p>
     <div class="row d-flex justify-content-center">
     @foreach ($products as $product)
         <div class="card col-md-4 ms-4 me-4 border border-warning" style="width: 25rem;">
