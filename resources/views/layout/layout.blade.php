@@ -26,7 +26,7 @@
                             <a class="nav-link text-light" href="{{route('cart') }}">My Cart</a>
                         </li>
                         <li class="nav-item dropdown">
-                            <a class="nav-link text-light" href="">Transaction History</a>
+                            <a class="nav-link text-light" href="{{route('transaction') }}">Transaction History</a>
                         </li>
                         @elseif (auth()->user()->type == 'ADMIN')
                         <li class="nav-item dropdown">

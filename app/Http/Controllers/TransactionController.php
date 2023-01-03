@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 use App\Models\Transaction;
 use Illuminate\Http\Request;
+use Carbon\Carbon;
 
 class TransactionController extends Controller
 {
@@ -10,8 +11,11 @@ class TransactionController extends Controller
     {
         $status = "TRANSACTION";
         $user_id = auth()->user()->id;
+        $dates = Transaction::select('created_at')->distinct()->get()->pluck('created_at');
+
         return view('transactions.index', [
-            'transactions' => Transaction::where('user_id', $user_id)->where('status', $status)->get()
+            'transactions' => Transaction::where('user_id', $user_id)->where('status', $status)->get(),
+            'dates' =>$dates
         ]);
     }
 
