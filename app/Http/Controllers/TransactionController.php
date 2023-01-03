@@ -35,6 +35,7 @@ class TransactionController extends Controller
                 'status' => "TRANSACTION",
                 'receiver_name' => $request->receiver_name,
                 'receiver_address' => $request->receiver_address,
+                'created_at' => date('Y-m-d'),
             ]);
         }
 
