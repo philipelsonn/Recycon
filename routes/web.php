@@ -39,5 +39,5 @@ Route::put('/updateCart/{id}', [CartController::class, 'update'])->name('updateC
 Route::delete('/deleteCart/{id}', [CartController::class, 'destroy'])->name('deleteCart');
 
 //transaction
-Route::get('/transaction', [TransactionController::class, 'index'])->name('transaction');
+Route::get('/transactionHistory', [TransactionController::class, 'index'])->name('transaction');
 Route::put('/createTransaction', [TransactionController::class, 'update'])->name('createTransaction');

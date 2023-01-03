@@ -2,22 +2,18 @@
 
 @section('content')
     @if (session()->has('updated'))
-        <div class="d-flex justify-content-center">
-            <div class="col-md-4">
-                <div class="alert alert-success alert-dismissible fade show" role="alert">
-                    {{ session('updated') }}
-                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                </div>
+        <div class="col-md-4 mx-auto">
+            <div class="alert alert-success alert-dismissible fade show" role="alert">
+                {{ session('updated') }}
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
             </div>
         </div>
     @endif
     @if (session()->has('changed'))
-        <div class="d-flex justify-content-center">
-            <div class="col-md-4">
-                <div class="alert alert-success alert-dismissible fade show" role="alert">
-                    {{ session('changed') }}
-                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                </div>
+        <div class="col-md-4 mx-auto">
+            <div class="alert alert-success alert-dismissible fade show" role="alert">
+                {{ session('changed') }}
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
             </div>
         </div>
     @endif

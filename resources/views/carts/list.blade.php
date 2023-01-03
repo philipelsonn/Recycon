@@ -3,7 +3,7 @@
 @section('title', 'Cart')
 
 @section('content')
-    <h3 class="text-dark fw-bold ms-4 mt-3">Manage Item</h3>
+    <h3 class="text-dark fw-bold ms-4 mt-3">My Cart</h3>
     @if (count($transactions) == 0)
         <div class="container-fluid mx-auto my-auto">
             <h5 class="text-center fw-bold">
@@ -32,9 +32,9 @@
                             <tr class="text-center">
                                 <td class="align-middle">{{ $i }}</td>
                                 <td class="align-middle"><img src="/storage/images/item/{{ $transaction->item->image }}" alt="" style="height: 70px; width: 100px"></td>
-                                <td class="align-middle">{{ $transaction->item->price }}</td>
+                                <td class="align-middle">IDR. {{ $transaction->item->price }}</td>
                                 <td class="align-middle">{{ $transaction->quantity }}</td>
-                                <td class="align-middle">{{ $total }}</td>
+                                <td class="align-middle">IDR. {{ $total }}</td>
                                 <td class="align-middle">
                                     <div class="btn-toolbar flex-nowrap justify-content-evenly">
                                         <div class="btn-group me-2">
@@ -60,7 +60,7 @@
     @endif
     @if (count($transactions) > 0)
     <div class="container-fluid">
-        <h4 class="text-dark fw-bold ms-3 mt-3">Grand total: {{ $grandTotal }}</h4>
+        <h4 class="text-dark fw-bold ms-3 mt-3">Grand total: IDR. {{ $grandTotal }}</h4>
         <form method="POST" action="{{ route('createTransaction') }}"
             enctype="multipart/form-data">
             @method('UPDATE')
