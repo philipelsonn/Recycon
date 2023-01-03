@@ -31,7 +31,7 @@
                         </form>
                         @endif
                     @else
-                    <a class="btn btn-warning btn-outline-light text-dark fw-bold ms-4" type="submit" href="{{ route('login') }}">Login to buy</a>
+                    <a class="btn btn-warning text-dark fw-bold" type="submit" href="{{ route('login') }}">Login to buy</a>
                     @endif
                 </div>
             </div>
