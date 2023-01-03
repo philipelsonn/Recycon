@@ -78,6 +78,8 @@ class ItemController extends Controller
             'category' => 'required|string',
         ]);
 
+        $item = Item::where('item_id', '=', $request->item_id)->first();
+
         if ($request->hasFile('image_new')) {
             $extension = $request->file('image_new')->getClientOriginalExtension();
             $file_name = $request->name . time() . '.' . $extension;
