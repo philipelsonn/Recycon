@@ -1,10 +1,11 @@
 <?php
 
-use App\Http\Controllers\CartController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ItemController;
+use App\Http\Controllers\CartController;
+use App\Http\Controllers\TransactionController;
 
 Route::get('/', [HomeController::class, 'index']);
 Route::get('/home', [HomeController::class, 'home']);
@@ -36,3 +37,7 @@ Route::post('/addToCart/{id}', [CartController::class, 'store'])->name('addToCar
 Route::get('/editCart/{id}', [CartController::class, 'edit'])->name('editCart');
 Route::put('/updateCart/{id}', [CartController::class, 'update'])->name('updateCart');
 Route::delete('/deleteCart/{id}', [CartController::class, 'destroy'])->name('deleteCart');
+
+//transaction
+Route::get('/transaction', [TransactionController::class, 'index'])->name('transaction');
+Route::put('/createTransaction', [TransactionController::class, 'update'])->name('createTransaction');
