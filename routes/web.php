@@ -1,10 +1,11 @@
 <?php
 
-use App\Http\Controllers\CartController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ItemController;
+use App\Http\Controllers\CartController;
+use App\Http\Controllers\TransactionController;
 
 Route::get('/', [HomeController::class, 'index']);
 Route::get('/home', [HomeController::class, 'home']);
@@ -27,7 +28,7 @@ Route::get('/addItem', [ItemController::class, 'create'])->name('items.create');
 Route::post('/addItem', [ItemController::class, 'store']);
 Route::get('/viewItem', [ItemController::class, 'index'])->name('items.index');
 Route::get('/updateItem/{item_id?}', [ItemController::class, 'edit'])->name('items.edit');
-Route::post('/updateItem/{item_id?}', [ItemController::class, 'update']);
+Route::put('/updateItem/{item_id?}', [ItemController::class, 'update'])->name('updateItem');
 Route::post('/deleteItem/{item_id?}', [ItemController::class, 'destroy']);
 
 //cart
@@ -36,3 +37,7 @@ Route::post('/addToCart/{id}', [CartController::class, 'store'])->name('addToCar
 Route::get('/editCart/{id}', [CartController::class, 'edit'])->name('editCart');
 Route::put('/updateCart/{id}', [CartController::class, 'update'])->name('updateCart');
 Route::delete('/deleteCart/{id}', [CartController::class, 'destroy'])->name('deleteCart');
+
+//transaction
+Route::get('/transaction', [TransactionController::class, 'index'])->name('transaction');
+Route::put('/createTransaction', [TransactionController::class, 'update'])->name('createTransaction');
