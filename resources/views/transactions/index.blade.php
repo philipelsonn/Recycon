@@ -12,15 +12,16 @@
         </div>
     @elseif (count($transactions) > 0)
         <div class="container-fluid">
+            @php($count = 1)
             @foreach ($dates as $date)
             <div class="accordion accordion-flush" id="accordionFlushExample">
                 <div class="accordion-item">
-                    <h2 class="accordion-header" id="flush-headingOne">
-                    <button class="accordion-button collapsed bg-info bg-opacity-25" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseOne" aria-expanded="false" aria-controls="flush-collapseOne">
+                    <h2 class="accordion-header" id="flush-heading{{ $count }}">
+                    <button class="accordion-button collapsed bg-info bg-opacity-25 border border-info text-primary" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapse{{ $count }}" aria-expanded="false" aria-controls="flush-collapse{{ $count }}">
                         {{ $date->format('Y-m-d') }}
                     </button>
                     </h2>
-                    <div id="flush-collapseOne" class="accordion-collapse collapse" aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlushExample">
+                    <div id="flush-collapse{{ $count }}" class="accordion-collapse collapse" aria-labelledby="flush-heading{{ $count }}" data-bs-parent="#accordionFlushExample">
                         <div class="accordion-body">
                             <table class="table table-bordered table-sm table-striped no-footer table-warning border-primary">
                                 <thead class="thead-light">
@@ -61,6 +62,7 @@
                     </div>
                 </div>
             </div>
+            @php($count = $count + 1)
             @endforeach
         </div>
     @endif
