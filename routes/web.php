@@ -24,20 +24,20 @@ Route::post('/changePassword', [AuthController::class, 'changePasswordAuth']);
 //item
 Route::get('/showProduct', [ItemController::class, 'showProduct']);
 Route::get('/showProduct/{item_id?}', [ItemController::class, 'showDetail']);
-Route::get('/addItem', [ItemController::class, 'create'])->name('items.create');
+Route::get('/addItem', [ItemController::class, 'create'])->name('items.create')->middleware('admin');
 Route::post('/addItem', [ItemController::class, 'store']);
-Route::get('/viewItem', [ItemController::class, 'index'])->name('items.index');
-Route::get('/updateItem/{item_id?}', [ItemController::class, 'edit'])->name('items.edit');
+Route::get('/viewItem', [ItemController::class, 'index'])->name('items.index')->middleware('admin');
+Route::get('/updateItem/{item_id?}', [ItemController::class, 'edit'])->name('items.edit')->middleware('admin');
 Route::put('/updateItem/{item_id?}', [ItemController::class, 'update']);
 Route::post('/deleteItem/{item_id?}', [ItemController::class, 'destroy']);
 
 //cart
-Route::get('/cart', [CartController::class, 'index'])->name('cart');
+Route::get('/cartList', [CartController::class, 'index'])->name('cart')->middleware('customer');
 Route::post('/addToCart/{id}', [CartController::class, 'store'])->name('addToCart');
-Route::get('/editCart/{id}', [CartController::class, 'edit'])->name('editCart');
+Route::get('/editCart/{id}', [CartController::class, 'edit'])->name('editCart')->middleware('customer');
 Route::put('/updateCart/{id}', [CartController::class, 'update'])->name('updateCart');
 Route::delete('/deleteCart/{id}', [CartController::class, 'destroy'])->name('deleteCart');
 
 //transaction
-Route::get('/transactionHistory', [TransactionController::class, 'index'])->name('transaction');
+Route::get('/transactionHistory', [TransactionController::class, 'index'])->name('transaction')->middleware('customer');
 Route::put('/createTransaction', [TransactionController::class, 'update'])->name('createTransaction');
