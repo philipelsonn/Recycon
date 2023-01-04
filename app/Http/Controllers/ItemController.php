@@ -30,7 +30,7 @@ class ItemController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'item_id' => 'required|string',
+            'item_id' => 'required|string|unique:items',
             'name' => 'required|string|max:20',
             'price' => 'required|string|gte:1000',
             'description' => 'required|string|max:200',
@@ -102,6 +102,7 @@ class ItemController extends Controller
     public function destroy(string $item_id)
     {
         $item = Item::where('item_id', '=', $item_id)->delete();
+        Transaction::where('item_id', '=', $item_id)->delete();
 
         return redirect()->route('items.index');
     }
@@ -110,7 +111,7 @@ class ItemController extends Controller
         $products = Item::orderBy('created_at', 'asc');
 
         if (request('keyword')){
-            $products->where('name', 'like', '%' . request('keyword') . '%');
+            $products->where('name', 'like', '%' . request('keyword') . '%')->orWhere('item_id', 'like', '%' .request('keyword'). '%');
         }
 
         $data = [
