@@ -11,7 +11,7 @@ class TransactionController extends Controller
     {
         $status = "TRANSACTION";
         $user_id = auth()->user()->id;
-        $dates = Transaction::select('created_at')->distinct()->get()->pluck('created_at');
+        $dates = Transaction::select('created_at')->where('status', $status)->distinct()->get()->pluck('created_at');
 
         return view('transactions.index', [
             'transactions' => Transaction::where('user_id', $user_id)->where('status', $status)->get(),
@@ -35,6 +35,7 @@ class TransactionController extends Controller
                 'status' => "TRANSACTION",
                 'receiver_name' => $request->receiver_name,
                 'receiver_address' => $request->receiver_address,
+                'created_at' => now() 
             ]);
         }
 
